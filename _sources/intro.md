@@ -1,65 +1,11 @@
 # Syllabus 
-This tropical dynamics course is based on textbook "Tropical Dynamics" by Roger Smith (2015) and Atmospheric and Oceanic Fluid Dynamics by Geoffrey K. Vallis. The goal of this course is to help students have general pictures of tropical climatology including (1) scale analysis in tropics (i.e., why we care about moisture more than temperature) (2) zonal mean climatology, (3) cloud, radiation and circulation, (4) tropical atmospheric and oceanic variability, and (5) troposphere and stratosphere interaction. 
+This numerical method II course is the application part of the 
 
-Prerequisites for this class includes (1) Dynamics I & II, (2) Applied Math I&2, (3) Atmospheric Thermodynamics. 
+
 
 ## Course Outline
-__Part I: Climatology__
-* {ref}`Obs`
-	* The zonal mean circulation (energy and precipitation)
-    * Walker circulation and deviation from zonal Mean
-    * Tropical variability: convection, waves and moisture
-    * Brief introduction to theories in tropical dynamics 
-         
-* {ref}`scale_analysis`
-    * Governing equation on a sphere
-    * Weak temperature gradient/Weak Coriolis force assumptions
-    * Quasi-equilibrium vs Cumulus Ensemble
-    * Clausius–Clapeyron equation
-
-* {ref}`Hadley_Cell`
-    * Held-Hou model for Hadley Cell
-    * Energy flux equator
-    * What sets the boundary of Hadley Cell
-    * The connection with South Asia Monsoon
-
-__Part II: Variability__
-* {ref}`waves1`
-    * Governing equation and assumptions of tropical atmospheric waves
-        * Conservation of shallow water PV
-        * Equatorial wave equation
-        * Horizontal wave solution 
-        * Vertical normal modes
-    * Convective-coupled Waves
-* {ref}`MJO`
-    * Theories for MJO
-        * Wave Perspective
-        * Moisture Mode Framework
-    * Some Evidence from Wave Dynamics Perspective
-        * Boundary Layer Momentum Balance
-        * Lidzen-Nigam Model 
-    * Some Evidence from Moisture Mode Framework
-        * Gill Solution
-        * Gross-moist Stability 
-
-* {ref}`QBO`
-    * Quasi-Bieannial Oscillation
-    * Doppler-Shift of wave and the deposition of wave energy
-    * The direction of momentum transport 
-    * Lidzen and Holton model
+__Part I: Finite Difference__
+* {ref}`finite_difference`
+	* Discretization 
+    * Forward/Backward/Central Difference
   
-* {ref}`ENSO`
-    * Background
-    * Warm Water Volume (Recharge-Discharge oscillator)
-    * Wave School
-    * The Primitive Equation of ENSO Model
-    * ENSO Diversity 
-
-* Week 11 Teleconnection
-    * The conservation of planetary vorticity and Rossby wave source
-    * Hoskins' model  
-  
-__Part III: Climate Change__
-* {ref}`CC`
-    * Tropical circulation in the future climate 
-    * Simple law for future tropical hydrological cycle
