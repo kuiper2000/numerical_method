@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 12: The Projection of Future Hydrological Cycle &#8212; Numerical Method</title>
+    <title>Week 1: Finite Difference &#8212; Numerical Method</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,8 +60,6 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ODE/finite_difference';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -170,7 +168,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 12: The Projection of Future Hydrological Cycle</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 1: Finite Difference</a></li>
 </ul>
 
     </div>
@@ -340,9 +338,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -353,28 +349,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 12: The Projection of Future Hydrological Cycle</h1>
+    <h1>Week 1: Finite Difference</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zeroth-order-assumption">Zeroth Order Assumption</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wtg-and-qe">WTG and QE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-change-in-specific-relative-humidity">The Change in Specific/Relative Humidity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difference-between-land-and-ocean-warming">The difference between land and ocean warming</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-in-convection-intensity">Change in Convection Intensity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-for-zero-buoyancy-model-dr-marty-singh-s-work">Theory for zero buoyancy model (Dr. Marty Singh’s work)</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -384,74 +363,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-12-the-projection-of-future-hydrological-cycle">
-<span id="cc"></span><h1>Week 12: The Projection of Future Hydrological Cycle<a class="headerlink" href="#week-12-the-projection-of-future-hydrological-cycle" title="Link to this heading">#</a></h1>
-<p>Studying the future change in the hydrological cycle is challenging given the uncertainty in many aspects, including the change in radiative boundary conditions and the dynamical structure. Fortunately, some dynamical constraints in the tropics provide means for the development of predictive theory. We will start with a weak temperature gradient.</p>
-<section id="zeroth-order-assumption">
-<h2>Zeroth Order Assumption<a class="headerlink" href="#zeroth-order-assumption" title="Link to this heading">#</a></h2>
-<section id="wtg-and-qe">
-<h3>WTG and QE<a class="headerlink" href="#wtg-and-qe" title="Link to this heading">#</a></h3>
-<p>In the tropics, the moist adiabat dominates the vertical profile of saturated MSE regardless of land or ocean. Thus, for regions above the cloud base, they all share the same MSE profile. (Green curves in <a class="reference internal" href="#fig11-1"><span class="std std-numref">Fig. 1</span></a>). As climate warms, the oceanic regions’ temperature below the cloud base shifts from the first light red line to the first dark red line. (i.e., <span class="math notranslate nohighlight">\(\Delta T^{O}\)</span>). The corresponding MSE profile shifts from the first green curve (on the left) to the second green curve (on the right) (i.e., <span class="math notranslate nohighlight">\(\Delta T^{L}_{FT}=\Delta T^{O}_{FT}\)</span>).</p>
-<p>For land regions, the cloud base is usually higher than the ocean regions due to stronger CIN. Thus, starting from the cloud base over the land and following the dry adiabat to the surface, we can predict surface warming. In addition, given the zero buoyancy assumption (column MSE conserved, i.e., A-profile), we can go back down to the surface for both land and ocean. This implies the change in MSE is the same for both land and ocean. (the portion of dry static energy and latent energy can be different). (i.e., <span class="math notranslate nohighlight">\(\delta h^{L}_{\text{surface}}=\delta h^{O}_{\text{surface}}\)</span>)</p>
-<figure class="align-default" id="fig11-1">
-<a class="reference internal image-reference" href="tropical-dynamics-figures/OGorman.png"><img alt="tropical-dynamics-figures/OGorman.png" src="tropical-dynamics-figures/OGorman.png" style="width: 700px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The conceptual model for tropical hydrological cycle. Modified from Duan, McKinnon and Simpson (2024) and Byrne and O’Gorman, PNAS (2018)</span><a class="headerlink" href="#fig11-1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="the-change-in-specific-relative-humidity">
-<h3>The Change in Specific/Relative Humidity<a class="headerlink" href="#the-change-in-specific-relative-humidity" title="Link to this heading">#</a></h3>
-<p>Some box model and trajectory model suggests that the ratio of change in specific humidity over the land and over the ocean remains constant.  i.e.,</p>
-<div class="math notranslate nohighlight" id="equation-specific-humidity-ratio">
-<span class="eqno">(1)<a class="headerlink" href="#equation-specific-humidity-ratio" title="Link to this equation">#</a></span>\[\delta q_{\text{land}} = \gamma \delta q_{\text{ocean}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\gamma&lt;1\)</span>. We can set <span class="math notranslate nohighlight">\(\gamma\)</span> based on the current climate value.</p>
-<p>Following the conclusion of <span class="math notranslate nohighlight">\(\delta h^{L}_{\text{surface}}=\delta h^{O}_{\text{ocean}}\)</span>, one can easily show that based on the definition of MSE and linearized Clausius-Claperyon relationship.</p>
-<div class="math notranslate nohighlight" id="equation-land-warms-more">
-<span class="eqno">(2)<a class="headerlink" href="#equation-land-warms-more" title="Link to this equation">#</a></span>\[\begin{split}\begin{align}
-\delta T_{\text{land}} &amp; = \delta T_{\text{land}}+ (1-\gamma)\frac{L}{c_p} \delta q_{\text{ocean}} \\
-\frac{\delta \text{RH}_{\text{land}}}{\text{RH}_{\text{land}}} &amp; = \alpha (\gamma-1)\frac{L}{c_p} \delta q_{\text{ocean}} 
-\end{align}\end{split}\]</div>
-<p><a class="reference internal" href="#equation-land-warms-more">(2)</a> suggests that land warms more than the ocean and the relative humidity over land tends to decrease. <a class="reference internal" href="#fig11-1"><span class="std std-numref">Fig. 1</span></a> and equations <a class="reference internal" href="#equation-specific-humidity-ratio">(1)</a>, <a class="reference internal" href="#equation-land-warms-more">(2)</a> form a simple predictive theory.</p>
-<figure class="align-default" id="fig11-2">
-<a class="reference internal image-reference" href="tropical-dynamics-figures/CCpredictive_theory.jpeg"><img alt="tropical-dynamics-figures/CCpredictive_theory.jpeg" src="tropical-dynamics-figures/CCpredictive_theory.jpeg" style="width: 500px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The predictive land temperature, specific humidity, and relative humidity (from Byrne and O’Gorman 2018, PNAS)</span><a class="headerlink" href="#fig11-2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p><a class="reference internal" href="#fig11-2"><span class="std std-numref">Fig. 2</span></a> adopted from Byrne and O’Gorman (2018) shows the predictive results. One can find that the theory precisely predicts both temperature and specific humidity. The prediction of relatively humidity is moderately well (capturing the trend but not the variability). The change in relative humidity is especially interesting to the community since it determines where the LCL might be.</p>
-</section>
-<section id="the-difference-between-land-and-ocean-warming">
-<h3>The difference between land and ocean warming<a class="headerlink" href="#the-difference-between-land-and-ocean-warming" title="Link to this heading">#</a></h3>
-<p>From the framework above, one key ingredient in determining the warming difference between land and the ocean is the humidity difference, i.e., <span class="math notranslate nohighlight">\(\gamma\)</span>. However, whether <span class="math notranslate nohighlight">\(\gamma\)</span> is a constant remains a question.</p>
-</section>
-</section>
-<section id="change-in-convection-intensity">
-<h2>Change in Convection Intensity<a class="headerlink" href="#change-in-convection-intensity" title="Link to this heading">#</a></h2>
-<p>While the discussion above focuses on the quasi-equilibrium of convective adjustment. It does not necessarily apply to convection. Based on simulations, most studies suggest an increase in CAPE, it is, however, the change in <em>actual buoyancy</em> is limited. This implies when convection develops, it might experience stronger entrainment than it had in the past.</p>
-<section id="theory-for-zero-buoyancy-model-dr-marty-singh-s-work">
-<h3>Theory for zero buoyancy model (Dr. Marty Singh’s work)<a class="headerlink" href="#theory-for-zero-buoyancy-model-dr-marty-singh-s-work" title="Link to this heading">#</a></h3>
-<p>According to plume-based cumulus parameterization, the vertical change in moist static energy can be written as</p>
-<div class="math notranslate nohighlight" id="equation-plume-model-mse">
-<span class="eqno">(3)<a class="headerlink" href="#equation-plume-model-mse" title="Link to this equation">#</a></span>\[\frac{d h }{dz} = -\epsilon (h-h_e)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the entrainment rate and <span class="math notranslate nohighlight">\(h_e\)</span> is the environment mse.</p>
-<p>For regions above the cloud base, if we assume the change in buoyancy is small, then the change in saturated MSE is determined by the change in specific humidity.</p>
-<div class="math notranslate nohighlight" id="equation-plume-model-mse-sat">
-<span class="eqno">(4)<a class="headerlink" href="#equation-plume-model-mse-sat" title="Link to this equation">#</a></span>\[\begin{align}
-\frac{d h_{e}^{\text{sat}}}{dz} = -\epsilon L(q_e^{\text{sat}}-q_e)
-\end{align}\]</div>
-<p>We can further apply <a class="reference internal" href="#equation-plume-model-mse-sat">(4)</a> to calculate temperature difference between the environment and unentrained parcel. (CAPE can be considered as the temperature difference between the air parcel and environment). i.e.,</p>
-<div class="math notranslate nohighlight" id="equation-plume-model-dt">
-<span class="eqno">(5)<a class="headerlink" href="#equation-plume-model-dt" title="Link to this equation">#</a></span>\[\begin{align}
-\Delta T(z) \sim \frac{\epsilon (1-\text{RH}_e)}{1+\frac{L^2 q^{SAT}_{e}}{c_pR_vT^2}}\int_{zb}^{z}\frac{Lq_e^{sat}}{c_p}dz
-\end{align}\]</div>
-<p><a class="reference internal" href="#equation-plume-model-dt">(5)</a> is interesting but not intuitive. It says  (1) CAPE should increase with warming (almost exponentially) and (2)
-the decreases in the environment of relative humidity increase the CAPE.</p>
-<p>One reason is that the environment temperature is determined by those convective plumes that experience entrainment. In a moister environment, those plumes are more populated which can maintain a warmer environment (because it has zero buoyancy!!). When the environment is moister and warmer, the temperature difference between unentrained plume (which we use to calculate CAPE!) will be smaller. This also explains why the convection over a drier environment is usually more intense than in a moist environment.</p>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-1-finite-difference">
+<span id="finite-difference"></span><h1>Week 1: Finite Difference<a class="headerlink" href="#week-1-finite-difference" title="Link to this heading">#</a></h1>
+<p>To solve problems such as algebra, ordinary differential equation and partial differential equation, the discretization of equation is usually the very first step given the <em>storage</em> of information is <em>discrete</em> in our computer. However, it’s easy to prove (using Taylor expansion) that it’s possible to approach the analytical solution (i.e., continuous) when the time/increment is small enough.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -499,31 +413,6 @@ the decreases in the environment of relative humidity increase the CAPE.</p>
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zeroth-order-assumption">Zeroth Order Assumption</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wtg-and-qe">WTG and QE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-change-in-specific-relative-humidity">The Change in Specific/Relative Humidity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difference-between-land-and-ocean-warming">The difference between land and ocean warming</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-in-convection-intensity">Change in Convection Intensity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-for-zero-buoyancy-model-dr-marty-singh-s-work">Theory for zero buoyancy model (Dr. Marty Singh’s work)</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

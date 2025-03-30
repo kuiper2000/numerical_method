@@ -8,4 +8,3 @@ __Part I: Finite Difference__
 * {ref}`finite_difference`
 	* Discretization 
     * Forward/Backward/Central Difference
-  
